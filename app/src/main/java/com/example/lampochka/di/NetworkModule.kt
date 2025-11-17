@@ -12,7 +12,8 @@ object NetworkModule {
     @Provides
     fun provideBulbService(): BulbService =
         Retrofit.Builder()
-            .baseUrl("https://192.168.0.100:8000/")
+//            .baseUrl("https://192.168.0.100:8000/")
+            .baseUrl("https://restful-booker.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create()

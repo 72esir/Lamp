@@ -4,15 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lampochka.data.domain.TurnOffUseCase
-import com.example.lampochka.data.domain.TurnOnUseCase
+import com.example.lampochka.domain.TurnOffUseCase
+import com.example.lampochka.domain.TurnOnUseCase
 import com.example.lampochka.di.NetworkModule
-
-
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -20,11 +15,19 @@ class MainViewModel @Inject constructor(
     private val turnOff: TurnOffUseCase,
 ) : ViewModel() {
 
+    private val _response = MutableLiveData<String>()
+    val response: LiveData<String> = _response
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     fun turnOn() {
         viewModelScope.launch {
             try {
-                val response = NetworkModule.provideBulbService().postTurnOn()
+                val result = NetworkModule.provideBulbService().postTurnOn() // ← предполагаем, что use case возвращает String или данные
+                _response.value = result.toString()
             } catch (e: Exception) {
+                _error.value = "Ошибка: ${e.message}"
             }
         }
     }
@@ -32,8 +35,10 @@ class MainViewModel @Inject constructor(
     fun turnOff() {
         viewModelScope.launch {
             try {
-                val response = NetworkModule.provideBulbService().postTurnOff()
+                val result = NetworkModule.provideBulbService().postTurnOff()
+                _response.value = result.toString()
             } catch (e: Exception) {
+                _error.value = "Ошибка: ${e.message}"
             }
         }
     }

@@ -2,10 +2,10 @@ package com.example.lampochka.di
 
 import com.example.lampochka.data.BulbRepository
 import com.example.lampochka.data.BulbRepositoryImpl
-import com.example.lampochka.data.domain.TurnOffUseCase
-import com.example.lampochka.data.domain.TurnOffUseCaseImpl
-import com.example.lampochka.data.domain.TurnOnUseCase
-import com.example.lampochka.data.domain.TurnOnUseCaseImpl
+import com.example.lampochka.domain.TurnOffUseCase
+import com.example.lampochka.domain.TurnOffUseCaseImpl
+import com.example.lampochka.domain.TurnOnUseCase
+import com.example.lampochka.domain.TurnOnUseCaseImpl
 
 import dagger.Binds
 import dagger.Module

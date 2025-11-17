@@ -38,6 +38,15 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             viewModel.turnOff()
         }
 
+        viewModel.response.observe(viewLifecycleOwner) { message ->
+            binding.statusText.text = message
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+            binding.statusText.text = errorMsg
+             Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_LONG).show()
+        }
+
 //        viewModel.dogImageUrl.observe(viewLifecycleOwner) {
 //            binding.dogImage.load(it)
 //

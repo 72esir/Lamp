@@ -5,12 +5,10 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface BulbService {
-//    @POST()
-//    suspend fun postBrightness(brightnessLevel: Int)
 
-    @POST("/state/on")
-    suspend fun postTurnOn()
+    @GET("/ping")
+    suspend fun postTurnOn(): String
 
-    @POST("/state/off")
-    suspend fun postTurnOff()
+    @GET("/ping") //state/off
+    suspend fun postTurnOff(): String
 }
