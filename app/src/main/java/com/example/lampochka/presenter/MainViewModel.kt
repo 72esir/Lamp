@@ -24,10 +24,10 @@ class MainViewModel @Inject constructor(
     fun turnOn() {
         viewModelScope.launch {
             try {
-                val result = NetworkModule.provideBulbService().postTurnOn() // ← предполагаем, что use case возвращает String или данные
-                _response.value = result.toString()
+                val result = NetworkModule.provideBulbService().turnOn()
+                _response.value = if (result.body() == true) "Turning on successfully" else "Error (turn on)"
             } catch (e: Exception) {
-                _error.value = "Ошибка: ${e.message}"
+                _error.value = "Error: ${e.message}"
             }
         }
     }
@@ -35,26 +35,11 @@ class MainViewModel @Inject constructor(
     fun turnOff() {
         viewModelScope.launch {
             try {
-                val result = NetworkModule.provideBulbService().postTurnOff()
-                _response.value = result.toString()
+                val result = NetworkModule.provideBulbService().turnOff()
+                _response.value = if (result.body() == true) "Turning off successfully" else "Error (turn off)"
             } catch (e: Exception) {
-                _error.value = "Ошибка: ${e.message}"
+                _error.value = "Error: ${e.message}"
             }
         }
     }
-
-
-//    private val _dogImageUrl = MutableLiveData<String>()
-//    val dogImageUrl: LiveData<String>
-//        get() = _dogImageUrl
-
-//    fun loadNewDog() {
-//        viewModelScope.launch{
-//            val dogInfo = getDogsUseCase()
-//
-//            _dogImageUrl.postValue(
-//                dogInfo?.url
-//            )
-//        }
-//    }
 }

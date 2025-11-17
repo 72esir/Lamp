@@ -1,7 +1,7 @@
 package com.example.lampochka.di
 
-import com.example.lampochka.data.BulbRepository
-import com.example.lampochka.data.BulbRepositoryImpl
+import com.example.lampochka.data.LampRepository
+import com.example.lampochka.data.LampRepositoryImpl
 import com.example.lampochka.domain.TurnOffUseCase
 import com.example.lampochka.domain.TurnOffUseCaseImpl
 import com.example.lampochka.domain.TurnOnUseCase
@@ -13,13 +13,13 @@ import dagger.Module
 @Module
 interface AppBindsModule {
     @Binds
-    fun bindPostTurnOnUseCase(impl: TurnOnUseCaseImpl): TurnOnUseCase
+    fun bindTurnOnUseCase(impl: TurnOnUseCaseImpl): TurnOnUseCase
 
     @Binds
-    fun bindPostTurnOffUseCase(impl: TurnOffUseCaseImpl): TurnOffUseCase
+    fun bindTurnOffUseCase(impl: TurnOffUseCaseImpl): TurnOffUseCase
 
     @Binds
-    fun bindBulbRepository(impl: BulbRepositoryImpl): BulbRepository
+    fun bindBulbRepository(impl: LampRepositoryImpl): LampRepository
 
 //    @Binds
 //    fun bindGetDogsUseCase(impl: PostBrightnessUseCaseImpl): PostBrightnessUseCase

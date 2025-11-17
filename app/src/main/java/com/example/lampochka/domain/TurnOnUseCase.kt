@@ -1,15 +1,14 @@
 package com.example.lampochka.domain
 
-import com.example.lampochka.data.BulbRepository
+import com.example.lampochka.data.LampRepository
 import jakarta.inject.Inject
 
 interface TurnOnUseCase {
-    suspend operator fun invoke(): String
+    suspend operator fun invoke(): Boolean
 }
 
 class TurnOnUseCaseImpl @Inject constructor(
-    private  val repository: BulbRepository
+    private  val repository: LampRepository
 ): TurnOnUseCase {
-    override suspend operator fun invoke() =
-        repository.postTurnOn()
+    override suspend operator fun invoke() = repository.postTurnOn()
 }

@@ -1,6 +1,6 @@
 package com.example.lampochka.di
 
-import com.example.lampochka.data.BulbService
+import com.example.lampochka.data.LampService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -10,10 +10,10 @@ import retrofit2.create
 @Module
 object NetworkModule {
     @Provides
-    fun provideBulbService(): BulbService =
+    fun provideBulbService(): LampService =
         Retrofit.Builder()
-//            .baseUrl("https://192.168.0.100:8000/")
-            .baseUrl("https://restful-booker.herokuapp.com/")
+            .baseUrl("https://192.168.0.100:8000/")
+//            .baseUrl("https://restful-booker.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create()

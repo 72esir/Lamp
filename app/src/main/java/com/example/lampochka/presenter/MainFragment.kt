@@ -44,28 +44,8 @@ class MainFragment: Fragment(R.layout.fragment_main) {
 
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
             binding.statusText.text = errorMsg
-             Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_LONG).show()
         }
-
-//        viewModel.dogImageUrl.observe(viewLifecycleOwner) {
-//            binding.dogImage.load(it)
-//
-//            Toast.makeText(
-//                requireContext(),
-//                it,
-//                Toast.LENGTH_LONG,
-//            ).show()
-//        }
-
-
         super.onViewCreated(view, savedInstanceState)
     }
-
-//    override fun onAttach(context: Context) {
-//        val component = DaggerAppComponent.create()
-//
-//        component.inject(this)
-//
-//        super.onAttach(context)
-//    }
 }
