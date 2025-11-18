@@ -1,10 +1,18 @@
 package com.example.lampochka.data
 
+import com.example.lampochka.data.models.GetBrightnessLevelDto
+import com.example.lampochka.data.models.GetColorsDto
 import javax.inject.Inject
 
 interface LampRepository {
     suspend fun postTurnOn(): Boolean
     suspend fun postTurnOff(): Boolean
+    suspend fun getBrightness(): GetBrightnessLevelDto
+    suspend fun getCurrentBrightness(): Int
+    suspend fun postBrightness(): Boolean
+    suspend fun getColors(): Array<GetColorsDto>
+    suspend fun getCurrentColor(): GetColorsDto
+    suspend fun getColorNames(): Array<String>
 }
 
 class LampRepositoryImpl @Inject constructor(
@@ -22,6 +30,55 @@ class LampRepositoryImpl @Inject constructor(
         val response = service.turnOff()
         if (response.isSuccessful) {
             return response.body() ?: false
+        }
+        throw Exception("HTTP ${response.code()}: ${response.message()}")
+    }
+
+    override suspend fun getBrightness(): GetBrightnessLevelDto {
+        val response = service.getBrightnessLevel()
+        if (response.isSuccessful){
+            response.body() ?: throw Exception("Данные яркости отсутствуют")
+        }
+        throw Exception("HTTP ${response.code()}: ${response.message()}")
+    }
+
+    override suspend fun getCurrentBrightness(): Int {
+        val response = service.getCurrentBrightnessLevel()
+        if (response.isSuccessful){
+            response.body() ?: throw Exception("Данные яркости отсутствуют")
+        }
+        throw Exception("HTTP ${response.code()}: ${response.message()}")
+
+    }
+
+    override suspend fun postBrightness(): Boolean {
+        val response = service.setBrightnessLevel()
+        if (response.isSuccessful){
+            return response.body() ?: false
+        }
+        throw Exception("HTTP ${response.code()}: ${response.message()}")
+    }
+
+    override suspend fun getColors(): Array<GetColorsDto> {
+        val response = service.getColors()
+        if (response.isSuccessful){
+            return response.body() ?: throw Exception("Данные цветов отсутствуют")
+        }
+        throw Exception("HTTP ${response.code()}: ${response.message()}")
+    }
+
+    override suspend fun getCurrentColor(): GetColorsDto {
+        val response = service.getCurrentColor()
+        if (response.isSuccessful){
+            return response.body() ?: throw Exception("Данные текущего цвета отсутствуют")
+        }
+        throw Exception("HTTP ${response.code()}: ${response.message()}")
+    }
+
+    override suspend fun getColorNames(): Array<String> {
+        val response = service.getColorNamesOnly()
+        if (response.isSuccessful){
+            return response.body() ?: throw Exception("Цвета не получены")
         }
         throw Exception("HTTP ${response.code()}: ${response.message()}")
     }

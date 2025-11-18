@@ -8,7 +8,7 @@ interface TurnOffUseCase {
 }
 
 class TurnOffUseCaseImpl @Inject constructor(
-    private  val repository: LampRepository
+    private val repository: LampRepository
 ): TurnOffUseCase {
     override suspend operator fun invoke(): Boolean = repository.postTurnOff()
 }

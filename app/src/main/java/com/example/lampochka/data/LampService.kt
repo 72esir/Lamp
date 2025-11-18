@@ -20,7 +20,7 @@ interface LampService {
     suspend fun setBrightnessLevel() : Response<Boolean>
 
     @GET("/brightness/current")
-    suspend fun getCurrentLevel(): Response<Int>
+    suspend fun getCurrentBrightnessLevel(): Response<Int>
 
     @GET("/color/")
     suspend fun getColors(): Response<Array<GetColorsDto>>

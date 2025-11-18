@@ -2,6 +2,16 @@ package com.example.lampochka.di
 
 import com.example.lampochka.data.LampRepository
 import com.example.lampochka.data.LampRepositoryImpl
+import com.example.lampochka.domain.GetBrightnessUseCase
+import com.example.lampochka.domain.GetBrightnessUseCaseImpl
+import com.example.lampochka.domain.GetColorNamesUseCase
+import com.example.lampochka.domain.GetColorNamesUseCaseImpl
+import com.example.lampochka.domain.GetColorsUseCase
+import com.example.lampochka.domain.GetColorsUseCaseImpl
+import com.example.lampochka.domain.GetCurrentBrightnessUseCase
+import com.example.lampochka.domain.GetCurrentBrightnessUseCaseImpl
+import com.example.lampochka.domain.GetCurrentColorUseCase
+import com.example.lampochka.domain.GetCurrentColorUseCaseImpl
 import com.example.lampochka.domain.TurnOffUseCase
 import com.example.lampochka.domain.TurnOffUseCaseImpl
 import com.example.lampochka.domain.TurnOnUseCase
@@ -19,8 +29,20 @@ interface AppBindsModule {
     fun bindTurnOffUseCase(impl: TurnOffUseCaseImpl): TurnOffUseCase
 
     @Binds
-    fun bindBulbRepository(impl: LampRepositoryImpl): LampRepository
+    fun bindGetBrightnessUseCase(impl: GetBrightnessUseCaseImpl): GetBrightnessUseCase
 
-//    @Binds
-//    fun bindGetDogsUseCase(impl: PostBrightnessUseCaseImpl): PostBrightnessUseCase
+    @Binds
+    fun bindGetCurrBrightnessUseCase(impl: GetCurrentBrightnessUseCaseImpl): GetCurrentBrightnessUseCase
+
+    @Binds
+    fun bindGetColorsUseCase(impl: GetColorsUseCaseImpl): GetColorsUseCase
+
+    @Binds
+    fun bindGetCurrColorUseCase(impl: GetCurrentColorUseCaseImpl): GetCurrentColorUseCase
+
+    @Binds
+    fun bindGetColorNamesUseCase(impl: GetColorNamesUseCaseImpl): GetColorNamesUseCase
+
+    @Binds
+    fun bindLampRepository(impl: LampRepositoryImpl): LampRepository
 }

@@ -38,6 +38,26 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             viewModel.turnOff()
         }
 
+        binding.getBrightnessLevel.setOnClickListener{
+            viewModel.getBrightness()
+        }
+
+        binding.getCurrentBrightness.setOnClickListener {
+            viewModel.getCurrentBrightness()
+        }
+
+        binding.getColors.setOnClickListener {
+            viewModel.getColors()
+        }
+
+        binding.getCurrentColor.setOnClickListener {
+            viewModel.getCurrentColor()
+        }
+
+        binding.getColorNames.setOnClickListener {
+            viewModel.getColorNames()
+        }
+
         viewModel.response.observe(viewLifecycleOwner) { message ->
             binding.statusText.text = message
         }

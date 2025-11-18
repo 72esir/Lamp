@@ -10,7 +10,7 @@ import retrofit2.create
 @Module
 object NetworkModule {
     @Provides
-    fun provideBulbService(): LampService =
+    fun provideLampService(): LampService =
         Retrofit.Builder()
             .baseUrl("https://192.168.0.100:8000/")
 //            .baseUrl("https://restful-booker.herokuapp.com/")
