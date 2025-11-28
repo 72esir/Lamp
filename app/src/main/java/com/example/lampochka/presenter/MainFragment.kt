@@ -30,33 +30,53 @@ class MainFragment: Fragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.turnOn.setOnClickListener {
+        binding.btnTurnOn.setOnClickListener {
             viewModel.turnOn()
         }
 
-        binding.turnOff.setOnClickListener {
+        binding.btnTurnOff.setOnClickListener {
             viewModel.turnOff()
         }
 
-        binding.getBrightnessLevel.setOnClickListener{
+        binding.btnGetBrightnessLevel.setOnClickListener{
             viewModel.getBrightness()
         }
 
-        binding.getCurrentBrightness.setOnClickListener {
+        binding.btnGetCurrentBrightness.setOnClickListener {
             viewModel.getCurrentBrightness()
         }
 
-        binding.getColors.setOnClickListener {
+        binding.btnGetColors.setOnClickListener {
             viewModel.getColors()
         }
 
-        binding.getCurrentColor.setOnClickListener {
+        binding.btnGetCurrentColor.setOnClickListener {
             viewModel.getCurrentColor()
         }
 
-        binding.getColorNames.setOnClickListener {
+        binding.btnGetColorNames.setOnClickListener {
             viewModel.getColorNames()
         }
+
+        binding.btnSetColor.setOnClickListener {
+            val colorName = binding.editColor.text.toString().trim()
+            if (colorName.isNotEmpty()) {
+                viewModel.setColor(colorName)
+            } else {
+                binding.statusText.text = "Введите название цвета"
+            }
+        }
+
+        binding.btnSetBrightness.setOnClickListener {
+            val input = binding.editBrightness.text.toString().toIntOrNull()
+            if (input != null && input in 0..100) {
+                viewModel.setBrightness(input)
+            } else {
+                binding.statusText.text = "Введите число от 0 до 100"
+            }
+        }
+
+
 
         viewModel.response.observe(viewLifecycleOwner) { message ->
             binding.statusText.text = message
@@ -66,6 +86,9 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             binding.statusText.text = errorMsg
             Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_LONG).show()
         }
+
+
+
         super.onViewCreated(view, savedInstanceState)
     }
 }

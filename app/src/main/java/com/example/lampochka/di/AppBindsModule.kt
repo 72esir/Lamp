@@ -12,6 +12,10 @@ import com.example.lampochka.domain.GetCurrentBrightnessUseCase
 import com.example.lampochka.domain.GetCurrentBrightnessUseCaseImpl
 import com.example.lampochka.domain.GetCurrentColorUseCase
 import com.example.lampochka.domain.GetCurrentColorUseCaseImpl
+import com.example.lampochka.domain.PostBrightnessUseCase
+import com.example.lampochka.domain.PostBrightnessUseCaseImpl
+import com.example.lampochka.domain.PostColorUseCase
+import com.example.lampochka.domain.PostColorUseCaseImpl
 import com.example.lampochka.domain.TurnOffUseCase
 import com.example.lampochka.domain.TurnOffUseCaseImpl
 import com.example.lampochka.domain.TurnOnUseCase
@@ -42,6 +46,12 @@ interface AppBindsModule {
 
     @Binds
     fun bindGetColorNamesUseCase(impl: GetColorNamesUseCaseImpl): GetColorNamesUseCase
+
+    @Binds
+    fun bindPostBrightnessUseCase(impl: PostBrightnessUseCaseImpl): PostBrightnessUseCase
+
+    @Binds
+    fun bindPostColorUseCase(impl: PostColorUseCaseImpl): PostColorUseCase
 
     @Binds
     fun bindLampRepository(impl: LampRepositoryImpl): LampRepository

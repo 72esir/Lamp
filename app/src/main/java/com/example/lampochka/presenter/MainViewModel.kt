@@ -12,6 +12,8 @@ import com.example.lampochka.domain.GetColorNamesUseCase
 import com.example.lampochka.domain.GetColorsUseCase
 import com.example.lampochka.domain.GetCurrentBrightnessUseCase
 import com.example.lampochka.domain.GetCurrentColorUseCase
+import com.example.lampochka.domain.PostBrightnessUseCase
+import com.example.lampochka.domain.PostColorUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,6 +25,8 @@ class MainViewModel @Inject constructor(
     private val getColorsUC: GetColorsUseCase,
     private val getColorNamesUC: GetColorNamesUseCase,
     private val getCurrentColorUC: GetCurrentColorUseCase,
+    private val postBrightnessUC: PostBrightnessUseCase,
+    private val postColorUC: PostColorUseCase,
 ) : ViewModel() {
 
     private val _response = MutableLiveData<String>()
@@ -112,6 +116,36 @@ class MainViewModel @Inject constructor(
                 _response.value = message
             }catch (e: Exception){
                 _error.value = "Ошибка при получении названий цветов: ${e.message}"
+            }
+        }
+    }
+
+    fun setBrightness(brightness: Int) {
+        viewModelScope.launch {
+            try {
+                val success = postBrightnessUC(brightness)
+                _response.value = if (success) {
+                    "Яркость установлена: $brightness"
+                } else {
+                    "Не удалось установить яркость"
+                }
+            } catch (e: Exception) {
+                _error.value = "Ошибка установки яркости: ${e.message}"
+            }
+        }
+    }
+
+    fun setColor(colorName: String) {
+        viewModelScope.launch {
+            try {
+                val success = postColorUC(colorName)
+                _response.value = if (success) {
+                    "Цвет установлен: $colorName"
+                } else {
+                    "Не удалось установить цвет"
+                }
+            } catch (e: Exception) {
+                _error.value = "Ошибка установки цвета: ${e.message}"
             }
         }
     }

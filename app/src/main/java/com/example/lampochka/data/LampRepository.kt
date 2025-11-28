@@ -9,10 +9,11 @@ interface LampRepository {
     suspend fun postTurnOff(): Boolean
     suspend fun getBrightness(): GetBrightnessLevelDto
     suspend fun getCurrentBrightness(): Int
-    suspend fun postBrightness(): Boolean
+    suspend fun postBrightness(level: Int): Boolean
     suspend fun getColors(): Array<GetColorsDto>
     suspend fun getCurrentColor(): GetColorsDto
     suspend fun getColorNames(): Array<String>
+    suspend fun setColor(color: String): Boolean
 }
 
 class LampRepositoryImpl @Inject constructor(
@@ -37,7 +38,7 @@ class LampRepositoryImpl @Inject constructor(
     override suspend fun getBrightness(): GetBrightnessLevelDto {
         val response = service.getBrightnessLevel()
         if (response.isSuccessful){
-            response.body() ?: throw Exception("Данные яркости отсутствуют")
+            return response.body() ?: throw Exception("Данные яркости отсутствуют")
         }
         throw Exception("HTTP ${response.code()}: ${response.message()}")
     }
@@ -45,14 +46,14 @@ class LampRepositoryImpl @Inject constructor(
     override suspend fun getCurrentBrightness(): Int {
         val response = service.getCurrentBrightnessLevel()
         if (response.isSuccessful){
-            response.body() ?: throw Exception("Данные яркости отсутствуют")
+            return response.body() ?: throw Exception("Данные яркости отсутствуют")
         }
         throw Exception("HTTP ${response.code()}: ${response.message()}")
 
     }
 
-    override suspend fun postBrightness(): Boolean {
-        val response = service.setBrightnessLevel()
+    override suspend fun postBrightness(level: Int): Boolean {
+        val response = service.setBrightnessLevel(level)
         if (response.isSuccessful){
             return response.body() ?: false
         }
@@ -79,6 +80,14 @@ class LampRepositoryImpl @Inject constructor(
         val response = service.getColorNamesOnly()
         if (response.isSuccessful){
             return response.body() ?: throw Exception("Цвета не получены")
+        }
+        throw Exception("HTTP ${response.code()}: ${response.message()}")
+    }
+
+    override suspend fun setColor(color: String): Boolean {
+        val response = service.setColorName(color)
+        if (response.isSuccessful){
+            return response.body() ?: throw Exception("Цвет не установлен")
         }
         throw Exception("HTTP ${response.code()}: ${response.message()}")
     }

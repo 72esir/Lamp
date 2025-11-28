@@ -12,9 +12,10 @@ object NetworkModule {
     @Provides
     fun provideLampService(): LampService =
         Retrofit.Builder()
-            .baseUrl("https://192.168.0.100:8000/")
-//            .baseUrl("https://restful-booker.herokuapp.com/")
+//            .baseUrl("https://192.168.0.100:8000/")
+            .baseUrl("http://195.133.53.179:1337/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create()
+
 }

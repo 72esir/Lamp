@@ -1,126 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:padding="16dp">
 
-    <Button
-        android:id="@+id/get_colors"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="get colors"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/get_current_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-    </Button>
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/get_current_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="get current color"
-        app:layout_constraintTop_toBottomOf="@+id/get_colors"
-        app:layout_constraintBottom_toTopOf="@+id/get_color_names"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-    </Button>
+        <!-- Заголовок -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Управление лампой"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/get_color_names"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="get color names"
-        app:layout_constraintTop_toBottomOf="@+id/get_current_color"
-        app:layout_constraintBottom_toTopOf="@+id/get_brightness_level"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-    </Button>
+        <!-- Кнопки действий -->
+        <Button
+            android:id="@+id/btnTurnOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Включить"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/get_brightness_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="get brightness level"
-        app:layout_constraintTop_toBottomOf="@+id/get_color_names"
-        app:layout_constraintBottom_toTopOf="@+id/get_current_brightness"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-    </Button>
+        <Button
+            android:id="@+id/btnTurnOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Выключить"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/get_current_brightness"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="get current brightness"
-        app:layout_constraintTop_toBottomOf="@+id/get_brightness_level"
-        app:layout_constraintBottom_toTopOf="@+id/set_brightness_level"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-    </Button>
+        <Button
+            android:id="@+id/btnGetColors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Получить все цвета"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/set_brightness_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="set Brightness Level"
-        app:layout_constraintTop_toBottomOf="@+id/get_current_brightness"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/set_brightness_level_input"
-        android:layout_marginTop="24dp">
-    </Button>
+        <Button
+            android:id="@+id/btnGetCurrentColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Текущий цвет"
+            android:layout_marginBottom="8dp" />
 
-    <TextView
-        android:id="@+id/set_brightness_level_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Type brightness"
-        app:layout_constraintStart_toEndOf="@+id/set_brightness_level"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/set_brightness_level"
-        app:layout_constraintBottom_toBottomOf="@+id/set_brightness_level"/>
+        <Button
+            android:id="@+id/btnGetColorNames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Имена цветов"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/turn_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Turn on"
-        app:layout_constraintTop_toBottomOf="@+id/set_brightness_level_input"
-        app:layout_constraintBottom_toTopOf="@+id/turn_off"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-    </Button>
+        <Button
+            android:id="@+id/btnGetBrightnessLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Получить уровень яркости"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/turn_off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Turn off"
-        app:layout_constraintTop_toBottomOf="@+id/turn_on"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-    </Button>
+        <Button
+            android:id="@+id/btnGetCurrentBrightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Текущая яркость"
+            android:layout_marginBottom="8dp" />
 
-    <TextView
-        android:id="@+id/status_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Готово"
-        android:textSize="18sp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/turn_off"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- =============== УСТАНОВКА ЯРКОСТИ =============== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Яркость (0–100)"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editBrightness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnSetBrightness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Уст."
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- =============== УСТАНОВКА ЦВЕТА =============== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Цвет (например: red, blue)"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnSetColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Уст."
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Поле вывода результата -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Готово"
+                android:textSize="16sp"
+                android:background="?android:attr/colorBackground" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
